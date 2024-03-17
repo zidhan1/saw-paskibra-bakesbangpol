@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class EveryoneController extends Controller
 {
-    public function index()
+
+    public function index() // Dashboard Page
     {
-        return view('layouts.master');
+        return view('pages.dashboard');
     }
 }
