@@ -47,6 +47,10 @@
             z-index: 1;
         }
 
+        .active-span{
+            background-color : yellow;
+        }
+
         body {
             background-color: whitesmoke;
         }
@@ -100,10 +104,10 @@
 
     <!-- Side Navbar -->
     <nav class="sidenav border">
-        <div class="d-flex flex-column flex-shrink-0 p-3 ">
-            <ul class="nav nav-pills flex-column">
-                <li>
-                    <a href="#" class="nav-link active d-flex gap-1">
+        <div class="d-flex flex-column flex-shrink-0 p-2  ">
+            <ul class="nav nav-pills flex-column" id="myMenu">
+                <li class="mb-2">
+                    <a href="#" class="nav-link link-dark d-flex gap-1">
                         <span class="material-symbols-outlined">
                             dashboard
                         </span>
@@ -111,9 +115,8 @@
                             Dashboard
                         </span>
                     </a>
-                    <hr>
                 </li>
-                <li>
+                <li class="mb-2">
                     <a href="#" class="nav-link link-dark d-flex gap-1">
                         <span class="material-symbols-outlined">
                             description
@@ -122,9 +125,8 @@
                             Data Kriteria
                         </span>
                     </a>
-                    <hr>
                 </li>
-                <li>
+                <li class="mb-2">
                     <a href="#" class="nav-link link-dark d-flex gap-1">
                         <span class="material-symbols-outlined">
                             assignment
@@ -133,9 +135,8 @@
                             Data Peserta
                         </span>
                     </a>
-                    <hr>
                 </li>
-                <li>
+                <li class="mb-2">
                     <a href="#" class="nav-link link-dark d-flex gap-1">
                         <span class="material-symbols-outlined">
                             inventory
@@ -144,7 +145,6 @@
                             Hasil Ranking
                         </span>
                     </a>
-                    <hr>
                 </li>
             </ul>
         </div>
@@ -155,10 +155,11 @@
     <div class="main">
         @yield('content')
     </div>
-    <div class="mt-3 my-footer d-flex">
-        <p class="m-auto">Copyright @2024 Kiran</p>
-    </div>
     <!-- End Main Content -->
+
+    <!-- Script -->
+    <script>
+    </script>
 </body>
 
 </html>
