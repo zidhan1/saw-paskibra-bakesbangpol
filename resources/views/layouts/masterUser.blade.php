@@ -45,7 +45,7 @@
                         </span>
                         <div class="dropdown m-auto">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Admin
+                                User
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -80,26 +80,6 @@
                             description
                         </span>
                         <span>
-                            Data Kriteria
-                        </span>
-                    </a>
-                </li>
-                <li class="mb-2">
-                    <a href="#" class="nav-link d-flex gap-1">
-                        <span class="material-symbols-outlined">
-                            assignment
-                        </span>
-                        <span>
-                            Data Peserta
-                        </span>
-                    </a>
-                </li>
-                <li class="mb-2">
-                    <a href="{{url('data-seleksi')}}" class="nav-link d-flex gap-1">
-                        <span class="material-symbols-outlined">
-                            calendar_month
-                        </span>
-                        <span>
                             Jadwal Seleksi
                         </span>
                     </a>
@@ -110,7 +90,7 @@
                             inventory
                         </span>
                         <span>
-                            Hasil Ranking
+                            Hasil Seleksi
                         </span>
                     </a>
                 </li>

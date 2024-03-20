@@ -1,0 +1,82 @@
+body {
+    background-color: whitesmoke;
+}
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 20;
+    left: 0;
+    background-color: #FFCC70;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+    height : 60px;
+    transition: top 0.3s;
+}
+
+.main {
+    margin-left: 200px;
+    padding: 30px;
+    padding-top: 80px;
+}
+
+.my-footer {
+    background-color: #FFCC70;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+.active-span {
+    background-color: yellow;
+}
+
+.nav-link {
+    color: black;
+}
+
+.nav-link:hover {
+    background-color: #fcb636;
+    color: white;
+}
+
+.btn-orange {
+    background-color : #FFCC70;
+    color : black;
+   
+}
+
+.btn-orange:hover {
+    background-color : #fcb636;
+    color : white;
+}
+
+.btn-edit{
+    background-color : #fcb636;
+    color : white;
+    padding-left : 10px;
+    padding-right : 10px;
+}
+
+.btn-edit:hover{
+    background-color : orange;
+    color : white;
+}
+
+td
+{
+ max-width: 100px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
