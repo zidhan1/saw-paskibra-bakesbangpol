@@ -80,3 +80,27 @@ td
  text-overflow: ellipsis;
  white-space: nowrap;
 }
+
+.btn-green{
+    background-color : #59c62a;
+    color : white;
+    padding-left : 10px;
+    padding-right : 10px;
+}
+
+.btn-green:hover{
+    background-color : #37980e;
+    color : white;
+}
+
+.btn-sky{
+    background-color : #3d85c6;
+    color : white;
+    padding-left : 10px;
+    padding-right : 10px;
+}
+
+.btn-sky:hover{
+    background-color : #176cb9;
+    color : white;
+}

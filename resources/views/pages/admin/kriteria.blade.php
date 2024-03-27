@@ -37,7 +37,7 @@
                     @foreach($data as $dt)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$dt->nama_kriteria}}</td>
+                        <td>{{ucwords($dt->nama_kriteria)}}</td>
                         <td>{{$dt->bobot}}</td>
                         <td>
                             <a href="#" class="btn btn-edit btn-sm" data-bs-toggle="modal" data-bs-target="#editkriteria{{$dt->id}}" type="button">

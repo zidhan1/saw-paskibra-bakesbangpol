@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EveryoneController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\SeleksiController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,9 +43,19 @@ Route::middleware('admin')->group(function () {
     Route::post('data-seleksi/add', [SeleksiController::class, 'store'])->name('seleksi.add');
     Route::post('data-seleksi/edit/{id}', [SeleksiController::class, 'update']);
     Route::post('data-seleksi/delete/{id}', [SeleksiController::class, 'delete']);
+
+    // Data Peserta
+    Route::get('peserta', [PesertaController::class, 'indexAdmin']);
 });
 
 // Akses User
 Route::middleware('user')->group(function () {
     Route::get('dashboard-user', [EveryoneController::class, 'userIndex']);
+    Route::get('jadwal-seleksi', [UserController::class, 'indexSeleksi']);
+    Route::get('jadwal-seleksi/{id}', [UserController::class, 'viewSeleksi']);
+
+    //pendaftaran
+    Route::get('pendaftaran/{id}', [PesertaController::class, 'index'])->name('pendaftaran');
+    Route::post('pendaftaran/add', [PesertaController::class, 'store'])->name('peserta.store');
+    Route::post('pendaftaran/delete/{id}', [PesertaController::class, 'destroy'])->name('peserta.delete');
 });
