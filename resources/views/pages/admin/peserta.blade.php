@@ -48,10 +48,10 @@
                         <td>{{$dt->asal_sekolah}}</td>
                         <td>{{$dt->tahun_daftar}}</td>
                         <td>
-                            <a href="#" class="btn btn-green btn-sm" type="button">
+                            <a href="{{url('peserta', $dt->id)}}" class="btn btn-green btn-sm" type="button">
                                 Lihat
                             </a>
-                            <a href="#" class="btn btn-edit btn-sm" data-bs-toggle="modal" data-bs-target="#deleteseleksi{{$dt->id}}" type="button">
+                            <a href="{{route('nilai.add', $dt->id)}}" class="btn btn-edit btn-sm" type="button">
                                 Beri Nilai
                             </a>
                         </td>

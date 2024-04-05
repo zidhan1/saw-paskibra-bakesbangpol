@@ -48,7 +48,7 @@
                                 User
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{url('user-profile')}}">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Setting</a></li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -85,7 +85,17 @@
                     </a>
                 </li>
                 <li class="mb-2">
-                    <a href="{{'jadwal-seleksi'}}" class="nav-link d-flex gap-1">
+                    <a href="{{url('user-pendaftaran')}}" class="nav-link d-flex gap-1">
+                        <span class="material-symbols-outlined">
+                            app_registration
+                        </span>
+                        <span>
+                            Pendaftaran
+                        </span>
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="{{url('jadwal-seleksi')}}" class="nav-link d-flex gap-1">
                         <span class="material-symbols-outlined">
                             description
                         </span>

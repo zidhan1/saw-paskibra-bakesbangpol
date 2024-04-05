@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\NilaiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EveryoneController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\SeleksiController;
 use App\Http\Controllers\UserController;
@@ -27,10 +29,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [AuthController::class, 'index']);
+Route::get('/', [AuthController::class, 'index'])->middleware('guest');
 
 // Akses Admin
-Route::middleware('admin')->group(function () {
+Route::middleware(['admin'])->group(function () {
     // Dashboard
     Route::get('/dashboard', [EveryoneController::class, 'index']);
 
@@ -46,16 +48,28 @@ Route::middleware('admin')->group(function () {
 
     // Data Peserta
     Route::get('peserta', [PesertaController::class, 'indexAdmin']);
+    Route::get('peserta/{id}', [PesertaController::class, 'view']);
+
+    // Data Nilai
+    Route::get('nilai/add/{id}', [NilaiController::class, 'index'])->name('nilai.add');
 });
 
 // Akses User
-Route::middleware('user')->group(function () {
+Route::middleware(['user'])->group(function () {
     Route::get('dashboard-user', [EveryoneController::class, 'userIndex']);
     Route::get('jadwal-seleksi', [UserController::class, 'indexSeleksi']);
     Route::get('jadwal-seleksi/{id}', [UserController::class, 'viewSeleksi']);
 
-    //pendaftaran
-    Route::get('pendaftaran/{id}', [PesertaController::class, 'index'])->name('pendaftaran');
-    Route::post('pendaftaran/add', [PesertaController::class, 'store'])->name('peserta.store');
-    Route::post('pendaftaran/delete/{id}', [PesertaController::class, 'destroy'])->name('peserta.delete');
+    //profile
+    // Route::get('pendaftaran/{id}', [PesertaController::class, 'index'])->name('pendaftaran');
+    Route::post('profile/add', [PesertaController::class, 'store'])->name('peserta.store');
+    Route::post('profile/edit', [PesertaController::class, 'update'])->name('peserta.update');
+    Route::post('profile/delete/{id}', [PesertaController::class, 'destroy'])->name('peserta.delete');
+
+    // Pendaftaran
+    Route::get('user-pendaftaran', [PendaftaranController::class, 'index']);
+    Route::post('user-pendaftaran/add', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
+
+    // halaman profile
+    Route::get('user-profile', [UserController::class, 'profile']);
 });

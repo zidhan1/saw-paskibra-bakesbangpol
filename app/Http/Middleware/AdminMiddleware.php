@@ -19,7 +19,7 @@ class AdminMiddleware
     {
         if ($request->user()->role !== 'admin') {
 
-            return redirect('login');
+            return redirect('dashboard');
         }
         return $next($request);
     }

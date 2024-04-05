@@ -104,3 +104,18 @@ td
     background-color : #176cb9;
     color : white;
 }
+
+.bg-card-sky{
+    background-color: #e7ebef;
+    color: black;
+}
+
+.warning-card{
+    color : #3c98ec;
+    border: 1px solid;
+}
+
+.warning-card-danger{
+    color : #cc0000;
+    border: 1px solid;
+}

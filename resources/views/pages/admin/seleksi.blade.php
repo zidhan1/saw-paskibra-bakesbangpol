@@ -22,10 +22,16 @@
     </div>
     @endif
 
+    @if(session()->has('failed'))
+    <div class="alert alert-danger" role="alert">
+        {{session()->get('failed')}}
+    </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
-            <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#addseleksi" type="button">
-                Tambah data
+            <button class="btn btn-sky btn-sm" data-bs-toggle="modal" data-bs-target="#addseleksi" type="button">
+                Upload berkas seleksi
             </button>
         </div>
         <div class="card-body">
@@ -33,11 +39,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <!-- <th scope="col">Hari</th> -->
-                        <th scope="col">Tanggal Mulai</th>
-                        <th scope="col">Tanggal Selesai</th>
-                        <th scope="col">Keterangan</th>
+                        <th scope="col">Nama Berkas</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -45,20 +47,16 @@
                     @foreach($data as $dt)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$dt->nama}}</td>
-                        <td>{{ date('d-M-y', strtotime($dt->tanggal_mulai))}}</td>
-                        <td>{{date('d-M-y', strtotime($dt->tanggal_selesai))}}</td>
-                        <td>{{$dt->keterangan}}</td>
+                        <td>{{$dt->nama_berkas}}</td>
                         <td>
-                            <a href="#" class="btn btn-edit btn-sm" data-bs-toggle="modal" data-bs-target="#editseleksi{{$dt->id}}" type="button">
-                                Edit
+                            <a download="" href="{{ asset('file/'. $dt->nama_berkas) }}" class="btn btn-edit btn-sm"" type=" button">
+                                Unduh
                             </a>
                             <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteseleksi{{$dt->id}}" type="button">
                                 Hapus
                             </a>
                         </td>
                     </tr>
-                    @include('pages.admin.editseleksi')
                     @include('pages.admin.deleteseleksi')
                     @endforeach
                 </tbody>
@@ -75,25 +73,24 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Jadwal Seleksi</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{url('data-seleksi/add')}}" method="POST">
+            <form action="{{url('data-seleksi/add')}}" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Nama Ujian</label>
-                        <input type="text" class="form-control" id="nama" name="nama">
+                        <label for="nama_berkas" class="form-label">Upload Jadwal Seleksi (PDF)</label>
+                        <input type="file" class="form-control" id="nama_berkas" name="nama_berkas">
                     </div>
                     <div class="mb-3">
-                        <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
+                        <label for="surat_pernyataan" class="form-label">Upload Template Surat Pernyataan</label>
+                        <input type="file" class="form-control" id="surat_pernyataan" name="surat_pernyataan">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal_mulai" class="form-label">Tanggal Mulai Pendaftaran</label>
                         <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai">
                     </div>
                     <div class="mb-3">
-                        <label for="tanggal_selesai" class="form-label">Tanggal Selesai</label>
+                        <label for="tanggal_selesai" class="form-label">Tanggal Selesai Pendaftaran</label>
                         <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
-                    </div>
-                    <div class="mb-3">
-                        <textarea class="form-control" name="keterangan" id="keterangan" cols="30" rows="5">
-
-                        </textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -15,7 +15,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="bobot" class="form-label">Bobot Kriteria</label>
-                        <input type="number" class="form-control" id="bobot" name="bobot" value="{{$dt->bobot}}">
+                        <input type="text" class="form-control" id="bobot" name="bobot" value="{{$dt->bobot}}">
                     </div>
                 </div>
                 <div class="modal-footer">
