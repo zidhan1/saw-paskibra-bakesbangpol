@@ -51,7 +51,7 @@
                             <a href="{{url('peserta', $dt->id)}}" class="btn btn-green btn-sm" type="button">
                                 Lihat
                             </a>
-                            <a href="{{route('nilai.add', $dt->id)}}" class="btn btn-edit btn-sm" type="button">
+                            <a href="{{url('nilai/add', $dt->id)}}" class="btn btn-edit btn-sm">
                                 Beri Nilai
                             </a>
                         </td>

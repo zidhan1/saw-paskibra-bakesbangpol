@@ -9,5 +9,5 @@ class Nilai extends Model
 {
     use HasFactory;
     protected $table = 'nilai';
-    protected $fillable = ['id_kriteria', 'nilai'];
+    protected $fillable = ['id_peserta', 'id_kriteria', 'nilai'];
 }

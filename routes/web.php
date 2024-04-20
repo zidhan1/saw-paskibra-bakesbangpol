@@ -51,7 +51,9 @@ Route::middleware(['admin'])->group(function () {
     Route::get('peserta/{id}', [PesertaController::class, 'view']);
 
     // Data Nilai
-    Route::get('nilai/add/{id}', [NilaiController::class, 'index'])->name('nilai.add');
+    Route::get('nilai/add/{id}', [NilaiController::class, 'insertvalue']);
+    Route::post('nilai/store/{id}', [NilaiController::class, 'store'])->name('nilai.store');
+    Route::post('nilai/update/{id}', [NilaiController::class, 'update'])->name('nilai.update');
 });
 
 // Akses User
