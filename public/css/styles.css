@@ -9,7 +9,7 @@ body {
     z-index: 1;
     top: 20;
     left: 0;
-    background-color: #FFCC70;
+    background-color: #eb8484;
     overflow-x: hidden;
     padding-top: 80px;
 }
@@ -21,6 +21,7 @@ body {
     z-index: 1000;
     height : 60px;
     transition: top 0.3s;
+    /* background-color: #e1adad; */
 }
 
 .main {
@@ -38,7 +39,7 @@ body {
 }
 
 .active-span {
-    background-color: yellow;
+    background-color: #e44c4c;
 }
 
 .nav-link {
@@ -46,18 +47,18 @@ body {
 }
 
 .nav-link:hover {
-    background-color: #fcb636;
+    background-color: #e44c4c;
     color: white;
 }
 
 .btn-orange {
-    background-color : #FFCC70;
+    background-color : #eb8484;
     color : black;
    
 }
 
 .btn-orange:hover {
-    background-color : #fcb636;
+    background-color : #e44c4c;
     color : white;
 }
 
@@ -113,9 +114,27 @@ td
 .warning-card{
     color : #3c98ec;
     border: 1px solid;
+    border-radius: 15px;
 }
 
 .warning-card-danger{
     color : #cc0000;
     border: 1px solid;
+    border-radius: 15px;
+}
+
+
+.container {
+    width: 100%;
+    /* margin: 60px auto; */
+    /* text-align: center; */
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 13px rgba(0, 0, 0, 0.2);
+  }
+  
+.active-red {
+    background-color: #e44c4c; /* Ganti dengan warna latar belakang yang diinginkan */
+    color: white; /* Ganti dengan warna teks yang diinginkan */
 }

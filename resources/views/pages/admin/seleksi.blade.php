@@ -35,7 +35,7 @@
             </button>
         </div>
         <div class="card-body">
-            <table class="table table-sm table-hover">
+            <table class="table table-sm table-hover" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
@@ -46,7 +46,7 @@
                 <tbody>
                     @foreach($data as $dt)
                     <tr>
-                        <td>{{$loop->iteration}}</td>
+                        <td style="width: 5%;">{{$loop->iteration}}</td>
                         <td>{{$dt->nama_berkas}}</td>
                         <td>
                             <a download="" href="{{ asset('file/'. $dt->nama_berkas) }}" class="btn btn-edit btn-sm"" type=" button">
@@ -94,12 +94,20 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-edit">Save changes</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-orange text-white btn-sm">Save changes</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+
+    // Menyesuaikan lebar kolom setelah tabel diinisialisasi
+    table.columns.adjust().draw();
+</script>
 @endsection

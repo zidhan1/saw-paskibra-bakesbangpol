@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -19,6 +23,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <!-- Navbar -->
     <nav class="navbar top-nav navbar-expand-lg bg-body-tertiary border shadow-sm">
         <div class="container-fluid">
@@ -48,7 +53,7 @@
                         </span>
                         <div class="dropdown m-auto">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Admin
+                                {{Auth()->user()->name}}
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -73,11 +78,13 @@
     <!-- End Navbar -->
 
     <!-- Side Navbar -->
+
+    <!-- Side Navbar -->
     <nav class="sidenav border">
-        <div class="d-flex flex-column flex-shrink-0 p-2  ">
+        <div class="d-flex flex-column flex-shrink-0 p-2">
             <ul class="nav nav-pills flex-column" id="myMenu">
-                <li class="mb-2">
-                    <a href="{{url('dashboard')}}" class="nav-link d-flex gap-1">
+                <li class="nav-item mb-2">
+                    <a href="{{ url('dashboard') }}" class="nav-link d-flex gap-1 {{ request()->is('dashboard*') ? 'active-red' : '' }}">
                         <span class="material-symbols-outlined">
                             dashboard
                         </span>
@@ -86,8 +93,8 @@
                         </span>
                     </a>
                 </li>
-                <li class="mb-2">
-                    <a href="{{'kriteria'}}" class="nav-link d-flex gap-1">
+                <li class="nav-item mb-2">
+                    <a href="{{ url('kriteria') }}" class="nav-link d-flex gap-1 {{ request()->is('kriteria*') ? 'active-red' : '' }}">
                         <span class="material-symbols-outlined">
                             description
                         </span>
@@ -96,8 +103,8 @@
                         </span>
                     </a>
                 </li>
-                <li class="mb-2">
-                    <a href="{{url('peserta')}}" class="nav-link d-flex gap-1">
+                <li class="nav-item mb-2">
+                    <a href="{{ url('peserta') }}" class="nav-link d-flex gap-1 {{ request()->is('peserta*') ? 'active-red' : '' }}">
                         <span class="material-symbols-outlined">
                             assignment
                         </span>
@@ -106,8 +113,8 @@
                         </span>
                     </a>
                 </li>
-                <li class="mb-2">
-                    <a href="{{url('data-seleksi')}}" class="nav-link d-flex gap-1">
+                <li class="nav-item mb-2">
+                    <a href="{{ url('data-seleksi') }}" class="nav-link d-flex gap-1 {{ request()->is('data-seleksi*') ? 'active-red' : '' }}">
                         <span class="material-symbols-outlined">
                             calendar_month
                         </span>
@@ -116,8 +123,8 @@
                         </span>
                     </a>
                 </li>
-                <li class="mb-2">
-                    <a href="#" class="nav-link d-flex gap-1">
+                <li class="nav-item mb-2">
+                    <a href="{{ url('rangking') }}" class="nav-link d-flex gap-1 {{ request()->is('rangking*') ? 'active-red' : '' }}">
                         <span class="material-symbols-outlined">
                             inventory
                         </span>
@@ -138,6 +145,7 @@
     <!-- End Main Content -->
 
 
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
 </body>
 
 </html>

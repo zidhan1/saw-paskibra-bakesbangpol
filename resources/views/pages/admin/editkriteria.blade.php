@@ -14,13 +14,20 @@
                         <input readonly="readonly" type="text" class="form-control" id="nama_kriteria" name="nama_kriteria" value="{{$dt->nama_kriteria}}">
                     </div>
                     <div class="mb-3">
+                        <label for="tipe" class="form-label">Tipe Kriteria</label>
+                        <select name="tipe" id="tipe" class="form-control">
+                            <option @if($dt->tipe === 'benefit') selected="selected" @endif value="benefit">Benefit</option>
+                            <option @if($dt->tipe === 'cost') selected="selected" @endif value="cost">Cost</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="bobot" class="form-label">Bobot Kriteria</label>
                         <input type="text" class="form-control" id="bobot" name="bobot" value="{{$dt->bobot}}">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-edit">Save changes</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-orange btn-sm text-white">Save changes</button>
                 </div>
             </form>
         </div>

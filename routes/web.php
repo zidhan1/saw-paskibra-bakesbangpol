@@ -4,6 +4,7 @@ use App\Http\Controllers\NilaiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EveryoneController;
+use App\Http\Controllers\HasilController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PesertaController;
@@ -54,6 +55,12 @@ Route::middleware(['admin'])->group(function () {
     Route::get('nilai/add/{id}', [NilaiController::class, 'insertvalue']);
     Route::post('nilai/store/{id}', [NilaiController::class, 'store'])->name('nilai.store');
     Route::post('nilai/update/{id}', [NilaiController::class, 'update'])->name('nilai.update');
+
+    // Perhitungan SAW
+    Route::get('calculate/{tahun}', [HasilController::class, 'calculateSaw']);
+    Route::post('calculate/store', [HasilController::class, 'store'])->name('hasil.store');
+    Route::get('rangking/', [HasilController::class, 'view']);
+    Route::post('rangking/validasi/{id}', [HasilController::class, 'validation'])->name('validation');
 });
 
 // Akses User
@@ -74,4 +81,12 @@ Route::middleware(['user'])->group(function () {
 
     // halaman profile
     Route::get('user-profile', [UserController::class, 'profile']);
+
+    // halaman settings
+    Route::get('user-settings', [EveryoneController::class, 'userSetting']);
+    Route::post('user-setting/newpassword', [EveryoneController::class, 'userNewPassword'])->name('user.password');
+    Route::post('user-settings/destroy', [EveryoneController::class, 'userDestroy'])->name('user.destroy');
+
+    // Hasil seleksi
+    Route::get('hasil-seleksi', [UserController::class, 'hasilSeleksi']);
 });

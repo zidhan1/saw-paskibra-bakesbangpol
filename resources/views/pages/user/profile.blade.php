@@ -206,8 +206,8 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{url('jadwal-seleksi')}}" class="btn btn-edit">Kembali</a>
-                <button type="submit" class="btn btn-sky">Simpan</button>
+                <a href="{{url('user-pendaftaran')}}" class="btn btn-edit btn-sm">Kembali</a>
+                <button type="submit" class="btn btn-sky btn-sm">Simpan</button>
             </form>
         </div>
     </div>

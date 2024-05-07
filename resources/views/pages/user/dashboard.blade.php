@@ -11,9 +11,9 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Peringkat Anda</h5>
-                <h5 class="fw-semibold fs-3">10</h5>
+                <h5 class="fw-semibold fs-3">{{$peringkatUser}}</h5>
                 <p class="card-text">Lihat peringkat lainnya</p>
-                <a href="#" class="btn btn-orange">Lihat Data</a>
+                <a href="{{url('/hasil-seleksi')}}" class="btn btn-orange">Lihat Data</a>
             </div>
         </div>
     </div>

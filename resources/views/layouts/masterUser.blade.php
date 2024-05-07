@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css" />
+
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -16,6 +18,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+
+
+    <!-- Bootstrap JavaScript and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -48,11 +57,11 @@
                         </span>
                         <div class="dropdown m-auto">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                User
+                                {{Auth()->user()->name}}
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{url('user-profile')}}">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Setting</a></li>
+                                <li><a class="dropdown-item" href="{{url('user-settings')}}">Setting</a></li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -77,8 +86,8 @@
     <nav class="sidenav border">
         <div class="d-flex flex-column flex-shrink-0 p-2  ">
             <ul class="nav nav-pills flex-column" id="myMenu">
-                <li class="mb-2">
-                    <a href="{{url('dashboard-user')}}" class="nav-link d-flex gap-1">
+                <li class="nav-item mb-2">
+                    <a href="{{ url('dashboard-user') }}" class="nav-link d-flex gap-1 {{ request()->is('dashboard-user*') ? 'active-red' : '' }}">
                         <span class="material-symbols-outlined">
                             dashboard
                         </span>
@@ -87,8 +96,8 @@
                         </span>
                     </a>
                 </li>
-                <li class="mb-2">
-                    <a href="{{url('user-pendaftaran')}}" class="nav-link d-flex gap-1">
+                <li class="nav-item mb-2">
+                    <a href="{{url('user-pendaftaran')}}" class="nav-link d-flex gap-1 {{ request()->is('user-pendaftaran*') ? 'active-red' : '' }}">
                         <span class="material-symbols-outlined">
                             app_registration
                         </span>
@@ -97,8 +106,8 @@
                         </span>
                     </a>
                 </li>
-                <li class="mb-2">
-                    <a href="{{url('jadwal-seleksi')}}" class="nav-link d-flex gap-1">
+                <li class="nav-item mb-2">
+                    <a href="{{url('jadwal-seleksi')}}" class="nav-link d-flex gap-1 {{ request()->is('jadwal-seleksi*') ? 'active-red' : '' }}">
                         <span class="material-symbols-outlined">
                             description
                         </span>
@@ -107,8 +116,8 @@
                         </span>
                     </a>
                 </li>
-                <li class="mb-2">
-                    <a href="#" class="nav-link d-flex gap-1">
+                <li class="nav-item mb-2">
+                    <a href="{{url('hasil-seleksi')}}" class="nav-link d-flex gap-1 {{ request()->is('hasil-seleksi*') ? 'active-red' : '' }}">
                         <span class="material-symbols-outlined">
                             inventory
                         </span>
@@ -128,7 +137,7 @@
     </div>
     <!-- End Main Content -->
 
-
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
 </body>
 
 </html>

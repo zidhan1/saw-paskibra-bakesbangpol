@@ -24,20 +24,22 @@
 
     <div class="card">
         <div class="card-body">
-            <table class="table table-hover table-sm">
+            <table class="table table-hover table-sm" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama Kriteria</th>
+                        <th scope="col">Tipe Kriteria</th>
                         <th scope="col">Bobot Kriteria</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($data as $dt)
+                    @foreach($data as $key => $dt)
                     <tr>
-                        <td>{{$loop->iteration}}</td>
+                        <td style="width: 5%;">{{$key+1}}</td>
                         <td>{{ucwords($dt->nama_kriteria)}}</td>
+                        <td>{{ucwords($dt->tipe)}}</td>
                         <td>{{$dt->bobot}}</td>
                         <td>
                             <a href="#" class="btn btn-edit btn-sm" data-bs-toggle="modal" data-bs-target="#editkriteria{{$dt->id}}" type="button">
@@ -52,5 +54,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+    // Menyesuaikan lebar kolom setelah tabel diinisialisasi
+    table.columns.adjust().draw();
+</script>
 
 @endsection

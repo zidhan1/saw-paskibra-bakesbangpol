@@ -90,7 +90,7 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="mb-3">
-                            <label for="pengetahuan_umum" class="form-label">Nilai Parade</label>
+                            <label for="pengetahuan_umum" class="form-label">Nilai Pengetahuan Umum</label>
                             <select name="kriteria_7" id="pengetahuan_umum" class="form-control" required>
                                 <option @if(isset($value[6]) && $value[6]->nilai >= 75) selected="selected" @endif value="100">Nilai Peserta > 90</option>
                                 <option @if(isset($value[6]) && $value[6]->nilai >= 50 && $value[6]->nilai <= 75) selected="selected" @endif value="75">Nilai Peserta 81-90</option>
@@ -145,7 +145,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-orange btn-sm">Save changes</button>
             </div>
         </div>
     </div>
@@ -205,7 +205,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-orange btn-sm">Save changes</button>
             </div>
         </div>
     </div>
@@ -245,7 +245,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-orange btn-sm">Save changes</button>
             </div>
         </div>
     </div>

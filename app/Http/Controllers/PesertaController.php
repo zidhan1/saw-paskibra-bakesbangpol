@@ -166,7 +166,7 @@ class PesertaController extends Controller
     // admin middleware
     public function indexAdmin()
     {
-        $data = Peserta::all();
+        $data = Peserta::where('options', '=', '1')->get();
         return view('pages.admin.peserta', compact('data'));
     }
 

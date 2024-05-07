@@ -47,4 +47,29 @@ class UserController extends Controller
 
         return view('pages.user.profile', compact('data', 'bahasa'));
     }
+
+    // hasil seleksi
+    public function hasilSeleksi()
+    {
+        $tahun = peserta::where('id_user', '=', Auth()->user()->id)->first();
+
+        $peserta = Peserta::join('hasil', 'peserta.id', '=', 'hasil.id_peserta')
+            ->where('peserta.tahun_daftar', '=', $tahun->tahun_daftar)
+            ->select('peserta.*', 'hasil.id_peserta', 'hasil.hasil')
+            ->orderByDesc('peserta.tahun_daftar')
+            ->orderByDesc('hasil')
+            ->get();
+
+        $decision = Peserta::join('hasil', 'peserta.id', '=', 'hasil.id_peserta')
+            ->join('users', 'peserta.id_user', 'users.id')
+            ->where('peserta.tahun_daftar', '=', $tahun->tahun_daftar)
+            ->where('users.id', '=', Auth()->user()->id)
+            ->select('peserta.*', 'hasil.id_peserta', 'hasil.hasil')
+            ->orderByDesc('peserta.tahun_daftar')
+            ->orderByDesc('hasil')
+            ->first();
+        // dd($decision);
+
+        return view('pages.user.hasil', compact('peserta', 'decision'));
+    }
 }

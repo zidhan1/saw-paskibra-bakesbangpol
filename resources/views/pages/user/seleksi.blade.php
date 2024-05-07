@@ -7,7 +7,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <table class="table table-sm table-hover">
+            <table class="table table-sm table-hover" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
@@ -16,9 +16,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($data as $dt)
+                    @foreach($data as $key => $dt)
                     <tr>
-                        <td>{{$loop->iteration}}</td>
+                        <td style="width: 5%;">{{$key+1}}</td>
                         <td>{{$dt->nama_berkas}}</td>
                         <td>
                             <a href="{{asset('file/'. $dt->nama_berkas)}}" class="btn btn-sm btn-green">
@@ -32,4 +32,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+
+    // Menyesuaikan lebar kolom setelah tabel diinisialisasi
+    table.columns.adjust().draw();
+</script>
 @endsection

@@ -16,36 +16,43 @@ class KriteriaSeeder extends Seeder
         // menambahkan default data kriteria
         DB::table('kriteria')->insert([
             'nama_kriteria' => 'parade',
+            'tipe' => 'benefit',
             'bobot' => 0.35
         ]);
 
         DB::table('kriteria')->insert([
             'nama_kriteria' => 'pbb',
+            'tipe' => 'benefit',
             'bobot' => 0.25
         ]);
 
         DB::table('kriteria')->insert([
             'nama_kriteria' => 'kesehatan',
+            'tipe' => 'benefit',
             'bobot' => 0.15
         ]);
 
         DB::table('kriteria')->insert([
             'nama_kriteria' => 'samapta',
+            'tipe' => 'benefit',
             'bobot' => 0.1
         ]);
 
         DB::table('kriteria')->insert([
             'nama_kriteria' => 'wawancara',
+            'tipe' => 'benefit',
             'bobot' => 0.05
         ]);
 
         DB::table('kriteria')->insert([
             'nama_kriteria' => 'wawasan kebangsaan',
+            'tipe' => 'benefit',
             'bobot' => 0.05
         ]);
 
         DB::table('kriteria')->insert([
             'nama_kriteria' => 'pengetahuan umum',
+            'tipe' => 'benefit',
             'bobot' => 0.05
         ]);
     }

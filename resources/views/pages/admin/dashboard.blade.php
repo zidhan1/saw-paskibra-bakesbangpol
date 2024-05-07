@@ -10,25 +10,25 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Total Peserta</h5>
-                <h5 class="fw-semibold fs-3">10</h5>
+                <h5 class="fw-semibold fs-3">{{$peserta}}</h5>
                 <p class="card-text">Lihat dan kelola data peserta.</p>
-                <a href="#" class="btn btn-orange">Lihat Data</a>
+                <a href="{{url('peserta')}}" class="btn btn-orange">Lihat Data</a>
             </div>
         </div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Total Kriteria</h5>
-                <h5 class="fw-semibold fs-3">10</h5>
+                <h5 class="fw-semibold fs-3">{{$kriteria}}</h5>
                 <p class="card-text">Lihat dan kelola data kriteria.</p>
-                <a href="#" class="btn btn-orange">Lihat Data</a>
+                <a href="{{url('kriteria')}}" class="btn btn-orange">Lihat Data</a>
             </div>
         </div>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Jadwal Test</h5>
-                <h5 class="fw-semibold fs-3">10</h5>
+                <h5 class="fw-semibold fs-3">{{$jadwal}}</h5>
                 <p class="card-text">Lihat dan kelola data test.</p>
-                <a href="#" class="btn btn-orange">Lihat Data</a>
+                <a href="{{url('data-seleksi')}}" class="btn btn-orange">Lihat Data</a>
             </div>
         </div>
 

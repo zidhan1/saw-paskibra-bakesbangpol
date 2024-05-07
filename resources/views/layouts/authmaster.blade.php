@@ -13,12 +13,12 @@
 
     <style>
         .btn-custom {
-            background-color: #FFBC57;
+            background-color: #e06666;
             color: white;
         }
 
         .btn-custom:hover {
-            background-color: #FF9F1C;
+            background-color: #e65050;
             color: white;
         }
     </style>

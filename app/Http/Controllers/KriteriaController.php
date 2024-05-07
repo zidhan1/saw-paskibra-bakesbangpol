@@ -24,6 +24,7 @@ class KriteriaController extends Controller
 
         $data->nama_kriteria = $request->nama_kriteria;
         $data->bobot = $request->bobot;
+        $data->tipe = $request->tipe;
         $data->update();
         return redirect('kriteria')->with('success', 'Data Berhasil Di Update');
     }
