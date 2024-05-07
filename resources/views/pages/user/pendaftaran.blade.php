@@ -7,10 +7,10 @@
         <h4 class="fw-bold">Pendaftaran</h4>
     </div>
 
-    <div class="warning-card-danger p-3">
-        <h4 class="mt-3 fw-semibold" style="border-radius: 15px;">Anda belum melengkapi data profile, silahkan melengkapi data profile terlebih dahulu.</h4>
+    <div class="container mb-3">
+        <h4 class="mt-3" style="color: #333; font-size: 18px; margin-bottom: 20px;">Anda belum melengkapi data profile, silahkan melengkapi data profile terlebih dahulu.</h4>
         <hr>
-        <a href="{{url('user-profile')}}" class="btn btn-edit btn-sm">Data Profile</a>
+        <a href="{{url('user-profile')}}" class="btn btn-orange btn-sm">Data Profile</a>
     </div>
 </div>
 @endsection
@@ -22,8 +22,8 @@
         <h4 class="fw-bold">Pendaftaran</h4>
     </div>
 
-    <div class="warning-card-danger p-3">
-        <h4 class="mt-3 fw-semibold">Pendaftaran belum dibuka, silahkan menghubungi panitia.</h4>
+    <div class="container mb-3">
+        <h4 class="mt-3 " style="color: #333; font-size: 18px; margin-bottom: 20px;">Pendaftaran belum dibuka, silahkan menghubungi panitia.</h4>
         <hr>
         <a href="{{url('jadwal-seleksi')}}" class="btn btn-sky btn-sm">Lihat jadwal seleksi</a>
     </div>
@@ -38,10 +38,10 @@
     </div>
 
 
-    <div class="warning-card p-3">
-        <h4 class="mt-3 fw-semibold">Anda telah melakukan pendaftaran</h4>
+    <div class="container mb-3">
+        <h4 class="mt-3" style="color: #333; font-size: 18px; margin-bottom: 20px;">Anda telah melakukan pendaftaran</h4>
         <hr>
-        <a href="{{url('jadwal-seleksi')}}" class="btn btn-sky">Lihat jadwal seleksi</a>
+        <a href=" {{url('jadwal-seleksi')}}" class="btn btn-sky">Lihat jadwal seleksi</a>
     </div>
 
 </div>

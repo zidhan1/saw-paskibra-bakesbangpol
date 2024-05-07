@@ -48,11 +48,13 @@
                         <th scope="col">:</th>
                         <th scope="col"><span class="fw-normal">{{$data->agama}}</span></th>
                     </tr>
+                    @foreach($bahasa as $key => $bhs)
                     <tr>
-                        <th scope="col" style="width: 150px;">Bahasa</th>
+                        <th scope="col" style="width: 150px;">Bahasa {{$key+1}}</th>
                         <th scope="col">:</th>
-                        <th scope="col"><span class="fw-normal">{{$data->bahasa}}</span></th>
+                        <th scope="col"><span class="fw-normal">{{$bhs->nama_bahasa}}</span></th>
                     </tr>
+                    @endforeach
                     <tr>
                         <th scope="col" style="width: 150px;">Berat Badan</th>
                         <th scope="col">:</th>

@@ -1,4 +1,4 @@
-@extends('..layouts.masterUser')
+@extends('..layouts.master')
 @section('content')
 <div class="container-fluid">
     <div class="title">
@@ -42,8 +42,8 @@
                     </tr>
                 </tbody>
             </table>
-            <form action="{{route('user.destroy')}}" method="post">
-                <button type="button" class="btn btn-sm btn-sky" data-bs-toggle="modal" data-bs-target="#ubahPassword">Ubah Password</button>
+            <form action="{{route('admin.destroy')}}" method="post">
+                <button type="button" class="btn btn-sm btn-sky" data-bs-toggle="modal" data-bs-target="#changePassword">Ubah Password</button>
                 @csrf
                 <button type="submit" class="btn btn-sm btn-danger" onclick="confirm('Apakah Anda yakin ingin hapus akun?')">Hapus Akun</button>
             </form>
@@ -53,14 +53,14 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="ubahPassword" tabindex="-1" aria-labelledby="ubahPassword" aria-hidden="true">
+<div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="changePassword" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah Password</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('user.password')}}" method="POST">
+            <form action="{{route('admin.password')}}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">

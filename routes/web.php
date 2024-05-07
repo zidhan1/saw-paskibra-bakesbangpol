@@ -61,6 +61,11 @@ Route::middleware(['admin'])->group(function () {
     Route::post('calculate/store', [HasilController::class, 'store'])->name('hasil.store');
     Route::get('rangking/', [HasilController::class, 'view']);
     Route::post('rangking/validasi/{id}', [HasilController::class, 'validation'])->name('validation');
+
+    // halaman settings
+    Route::get('admin-settings', [EveryoneController::class, 'adminSetting']);
+    Route::post('admin-setting/newpassword', [EveryoneController::class, 'adminNewPassword'])->name('admin.password');
+    Route::post('admin-settings/destroy', [EveryoneController::class, 'adminDestroy'])->name('admin.destroy');
 });
 
 // Akses User

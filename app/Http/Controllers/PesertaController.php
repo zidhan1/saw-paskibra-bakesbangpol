@@ -174,6 +174,7 @@ class PesertaController extends Controller
     public function view($id)
     {
         $data = Peserta::findOrFail($id);
-        return view('pages.admin.detailpeserta', compact('data'));
+        $bahasa = Bahasa::where('id_peserta', '=', $id)->get();
+        return view('pages.admin.detailpeserta', compact('data', 'bahasa'));
     }
 }
