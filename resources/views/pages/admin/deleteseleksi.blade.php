@@ -12,8 +12,8 @@
                         <span class="fs-4">Apakah anda yakin?</span>
                     </div>
                     @csrf
-                    <button type="submit" class="btn btn-edit" style="padding-left: 20px; padding-right: 20px;">Ya</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                    <button type="submit" class="btn btn-orange btn-sm" style="padding-left: 20px; padding-right: 20px;">Ya</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tidak</button>
                 </div>
             </form>
         </div>

@@ -12,7 +12,8 @@ class NilaiController extends Controller
     // Halaman tambah nilai peserta
     public function insertvalue($id)
     {
-        $data = Peserta::findOrFail($id);
+        $data = Peserta::find($id);
+        // dd($id);
         $kriteria = Kriteria::all();
         $value = Nilai::where('id_peserta', '=', $id)->get();
         if ($value->isEmpty())

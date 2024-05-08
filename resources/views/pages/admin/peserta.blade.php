@@ -48,9 +48,12 @@
                         @endif
                         <td>{{$dt->asal_sekolah}}</td>
                         <td>{{$dt->tahun_daftar}}</td>
-                        <td>
+                        <td style="width: 30%;">
                             <a href="{{url('peserta', $dt->id)}}" class="btn btn-green btn-sm" type="button">
                                 Lihat
+                            </a>
+                            <a href="{{asset('file/'. $dt->nama_berkas)}}" class="btn btn-sm btn-orange text-white">
+                                Berkas
                             </a>
                             <a href="{{url('nilai/add', $dt->id)}}" class="btn btn-edit btn-sm">
                                 Beri Nilai

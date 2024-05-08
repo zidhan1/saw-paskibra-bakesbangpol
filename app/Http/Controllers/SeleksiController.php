@@ -37,7 +37,7 @@ class SeleksiController extends Controller
 
         $validation = $request->validate([
             'nama_berkas' => ['required', 'mimes:pdf'],
-            'surat_pernyataan' => ['required', 'mimes:pdf,doc,docx'],
+            'surat_pernyataan' => ['required', 'mimes:pdf'],
             'tanggal_mulai' => ['required', 'date'],
             'tanggal_selesai' => ['required', 'date']
         ]);
@@ -53,7 +53,7 @@ class SeleksiController extends Controller
 
 
         //Generate name surat pernyataan
-        $nameSuratPernyataan = 'Surat pernyataan_' . $dateRegistration;
+        $nameSuratPernyataan = 'Template surat pernyataan_' . $dateRegistration . '.pdf';
 
         // store surat pernyataan
         $suratPath = $request->surat_pernyataan->move(public_path('file'), $nameSuratPernyataan);

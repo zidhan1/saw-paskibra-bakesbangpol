@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Hasil;
 use App\Models\Peserta;
 use App\Models\Kriteria;
 use App\Models\RegisDate;
@@ -23,9 +24,9 @@ class EveryoneController extends Controller
     public function userIndex() // dashboard page user
     {
         $tahun = peserta::where('id_user', '=', Auth()->user()->id)->first();
-
+        $hasil = Hasil::where('id_peserta', '=', $tahun->id)->first();
         $peringkatUser = 0;
-        if ($tahun !== null) {
+        if ($tahun !== null && $hasil !== null) {
             $peringkat = Peserta::join('hasil', 'peserta.id', '=', 'hasil.id_peserta')
                 ->where('peserta.tahun_daftar', '=', $tahun->tahun_daftar)
                 ->select('peserta.*', 'hasil.id_peserta', 'hasil.hasil')

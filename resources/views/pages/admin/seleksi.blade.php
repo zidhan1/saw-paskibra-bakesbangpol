@@ -81,7 +81,7 @@
                         <input type="file" class="form-control" id="nama_berkas" name="nama_berkas">
                     </div>
                     <div class="mb-3">
-                        <label for="surat_pernyataan" class="form-label">Upload Template Surat Pernyataan</label>
+                        <label for="surat_pernyataan" class="form-label">Upload Template Surat Pernyataan (PDF)</label>
                         <input type="file" class="form-control" id="surat_pernyataan" name="surat_pernyataan">
                     </div>
                     <div class="mb-3">

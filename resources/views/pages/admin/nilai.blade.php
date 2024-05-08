@@ -277,7 +277,7 @@
     }
 
     // Menambahkan event listener untuk tombol "Save changes"
-    document.querySelector('#paradeModal .btn-primary').addEventListener('click', function() {
+    document.querySelector('#paradeModal .btn-orange').addEventListener('click', function() {
         hitungDanSetParade(); // Memanggil fungsi untuk menghitung dan memasukkan nilai parade
         $('#paradeModal').modal('hide'); // Menutup modal setelah tombol "Save changes" ditekan
     });
@@ -311,7 +311,7 @@
     }
 
     // Menambahkan event listener untuk tombol "Save changes"
-    document.querySelector('#pbbModal .btn-primary').addEventListener('click', function() {
+    document.querySelector('#pbbModal .btn-orange').addEventListener('click', function() {
         hitungDanSetPbb(); // Memanggil fungsi untuk menghitung dan memasukkan nilai parade
         $('#pbbModal').modal('hide'); // Menutup modal setelah tombol "Save changes" ditekan
     });
@@ -340,7 +340,7 @@
     }
 
     // Menambahkan event listener untuk tombol "Save changes"
-    document.querySelector('#samaptaModal .btn-primary').addEventListener('click', function() {
+    document.querySelector('#samaptaModal .btn-orange').addEventListener('click', function() {
         hitungDanSetSamapta(); // Memanggil fungsi untuk menghitung dan memasukkan nilai parade
         $('#samaptaModal').modal('hide'); // Menutup modal setelah tombol "Save changes" ditekan
     });

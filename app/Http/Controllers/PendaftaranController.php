@@ -14,6 +14,7 @@ class PendaftaranController extends Controller
     public function index()
     {
         $dateNow = Carbon::today();
+        $dateNowString = $dateNow->toDateString();
         $dateNow = $dateNow->year;
 
         $data = RegisDate::join('berkas', 'berkas.id', '=', 'regisdate.id_berkas')
@@ -30,7 +31,7 @@ class PendaftaranController extends Controller
         else
             $validated = collect();
 
-        return view('pages.user.pendaftaran', compact('data', 'surat', 'validated', 'id_peserta'));
+        return view('pages.user.pendaftaran', compact('data', 'surat', 'validated', 'id_peserta', 'dateNowString'));
     }
 
     public function store(Request $request)
@@ -52,17 +53,20 @@ class PendaftaranController extends Controller
         ]);
 
         //Generate name surat pernyataan
-        $nameSuratPernyataan = 'Surat pernyataan_peserta_' . $dateRegistration;
+        $nameSuratPernyataan = 'Surat pernyataan_peserta_' . $id_peserta . '_' . $dateRegistration;
 
         // store surat pernyataan
         $suratPath = $request->surat_pernyataan->move(public_path('file'), $nameSuratPernyataan);
 
-        $dataBerkas = Berkas::createOrFirst([
-            'nama_berkas' => $nameSuratPernyataan,
-            'id_peserta' => $id_peserta->id,
-            'jenis' => 'user',
-            'tahun' => $dateRegistration
-        ]);
+        $dataBerkas = Berkas::createOrFirst(
+            ['id_peserta' => $id_peserta->id],
+            [
+                'nama_berkas' => $nameSuratPernyataan,
+                'id_peserta' => $id_peserta->id,
+                'jenis' => 'user',
+                'tahun' => $dateRegistration
+            ]
+        );
 
         return redirect('user-pendaftaran');
     }
