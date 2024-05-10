@@ -8,6 +8,8 @@ use App\Models\Peserta;
 use App\Models\Kriteria;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class HasilController extends Controller
 {
@@ -16,6 +18,7 @@ class HasilController extends Controller
     {
         // Data peserta dan nilai
         $peserta = Peserta::where('peserta.tahun_daftar', '=', $tahun)
+            ->where('peserta.options', '=', '1')
             ->get();
         $nilai_peserta = Nilai::all();
 
@@ -128,5 +131,32 @@ class HasilController extends Controller
         // dd($data->validation);
         $data->update();
         return redirect('rangking');
+    }
+
+    public function generatePdf($tahun)
+    {
+        $data = Peserta::join('hasil', 'peserta.id', '=', 'hasil.id_peserta')
+            ->select('peserta.*', 'hasil.id_peserta', 'hasil.hasil')
+            ->where('peserta.tahun_daftar', '=', $tahun)
+            ->orderByDesc('peserta.tahun_daftar')
+            ->orderByDesc('hasil')
+            ->get();
+        $data_tahun = $tahun;
+
+        $html =  view('pages.admin.pdftemplate', compact('data', 'data_tahun'));
+
+        $options = new Options();
+
+        $options->set('isHtml5ParserEnabled', true);
+
+        $dompdf = new Dompdf($options);
+
+        $dompdf->loadHtml($html);
+
+        $dompdf->setPaper('A4', 'landscape');
+
+        $dompdf->render();
+
+        return $dompdf->stream('laporan.pdf');
     }
 }

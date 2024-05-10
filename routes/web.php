@@ -66,6 +66,9 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin-settings', [EveryoneController::class, 'adminSetting']);
     Route::post('admin-setting/newpassword', [EveryoneController::class, 'adminNewPassword'])->name('admin.password');
     Route::post('admin-settings/destroy', [EveryoneController::class, 'adminDestroy'])->name('admin.destroy');
+
+    // Generate PDF
+    Route::get('generatepdf/{tahun}', [HasilController::class, 'generatePdf']);
 });
 
 // Akses User

@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <!-- add icon link -->
+    <link rel="icon" href="{{asset('img/logo_kediri.svg')}}" type="image/x-icon" />
+
+    <title>Bakesbangpol Kota Kediri</title>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css" />
 
