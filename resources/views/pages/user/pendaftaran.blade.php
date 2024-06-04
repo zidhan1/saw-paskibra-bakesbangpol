@@ -21,7 +21,7 @@
     </div>
 
     <div class="container mb-3">
-        <h4 class="mt-3" style="color: #333; font-size: 18px; margin-bottom: 20px;">Pendaftaran telah ditutup!</h4>
+        <h4 class="mt-3" style="color: #333; font-size: 18px; margin-bottom: 20px;">Pendaftaran telah ditutup atau belum dibuka!</h4>
         <hr>
         <a href="{{url('dashboard-user')}}" class="btn btn-orange btn-sm">Kembali Dashboard</a>
     </div>

@@ -164,13 +164,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nama_ayah" class="form-label">Nama Ayah<span class="text-danger">*</span></label>
+                            <label for="nama_ayah" class="form-label">Nama Ayah</label>
                             <input type="text" name="nama_ayah" class="form-control" id="nama_ayah" value="@if($data !== null){{$data->nama_ayah}}@endif">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="pekerjaan_ayah	" class="form-label">Pekerjaan Ayah<span class="text-danger">*</span></label>
+                            <label for="pekerjaan_ayah	" class="form-label">Pekerjaan Ayah</label>
                             <input type="text" name="pekerjaan_ayah" class="form-control" id="pekerjaan_ayah" value="@if($data !== null){{$data->pekerjaan_ayah}}@endif">
                         </div>
                     </div>
@@ -178,7 +178,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="no_hp_ayah" class="form-label">No Handphone Ayah<span class="text-danger">*</span></label>
+                            <label for="no_hp_ayah" class="form-label">No Handphone Ayah</label>
                             <input type="number" class="form-control" id="no_hp_ayah" name="no_hp_ayah" value="@if($data !== null){{$data->no_hp_ayah}}@endif">
                         </div>
                     </div>
@@ -186,13 +186,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nama_ibu" class="form-label">Nama Ibu<span class="text-danger">*</span></label>
+                            <label for="nama_ibu" class="form-label">Nama Ibu</label>
                             <input type="text" name="nama_ibu" class="form-control" id="nama_ibu" value="@if($data !== null){{$data->nama_ibu}}@endif">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="pekerjaan_ibu" class="form-label">Pekerjaan Ibu<span class="text-danger">*</span></label>
+                            <label for="pekerjaan_ibu" class="form-label">Pekerjaan Ibu</label>
                             <input type="text" name="pekerjaan_ibu" class="form-control" id="pekerjaan_ibu" value="@if($data !== null){{$data->pekerjaan_ibu}}@endif">
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="no_hp_ibu" class="form-label">No Handphone Ibu<span class="text-danger">*</span></label>
+                            <label for="no_hp_ibu" class="form-label">No Handphone Ibu</label>
                             <input type="number" class="form-control" id="no_hp_ibu" name="no_hp_ibu" value="@if($data !== null){{$data->no_hp_ibu}}@endif">
                         </div>
                     </div>

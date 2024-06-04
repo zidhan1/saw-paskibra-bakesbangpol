@@ -15,7 +15,7 @@ class EveryoneController extends Controller
 
     public function index() // Dashboard Page admin
     {
-        $peserta = Peserta::count();
+        $peserta = Peserta::where('options', '=', 1)->count();
         $kriteria = Kriteria::count();
         $jadwal = RegisDate::count();
         return view('pages.admin.dashboard', compact('peserta', 'kriteria', 'jadwal'));
@@ -24,26 +24,38 @@ class EveryoneController extends Controller
     public function userIndex() // dashboard page user
     {
         $tahun = peserta::where('id_user', '=', Auth()->user()->id)->first();
-        $hasil = Hasil::where('id_peserta', '=', $tahun->id)->first();
-        $peringkatUser = 0;
-        if ($tahun !== null && $hasil !== null) {
-            $peringkat = Peserta::join('hasil', 'peserta.id', '=', 'hasil.id_peserta')
-                ->where('peserta.tahun_daftar', '=', $tahun->tahun_daftar)
-                ->select('peserta.*', 'hasil.id_peserta', 'hasil.hasil')
-                ->orderByDesc('hasil')
-                ->orderByDesc('peserta.tahun_daftar')
-                ->get();
-
-            // Cari peringkat peserta dengan id_user 3
-            $peringkatUser = $peringkat->search(function ($item, $key) {
-                return $item->id_user == Auth()->user()->id;
-            });
-
-            $peringkatUser += 1; // Tambah 1 karena peringkat dimulai dari 1, bukan 0
+        if ($tahun === null) {
+            $tahun = (object)['tahun_daftar' => '2000'];
         }
 
+        // dd($tahun);
 
-        return view('pages.user.dashboard', compact('peringkatUser'));
+        $peserta = collect();
+        $decision = collect([
+            'validation' => null
+        ]);
+        // dd($decision->get('validation'));
+        if ($tahun !== null) {
+            $peserta = Peserta::join('hasil', 'peserta.id', '=', 'hasil.id_peserta')
+                ->where('peserta.tahun_daftar', '=', $tahun->tahun_daftar)
+                ->select('peserta.*', 'hasil.id_peserta', 'hasil.hasil')
+                ->orderByDesc('peserta.tahun_daftar')
+                ->orderByDesc('hasil')
+                ->get();
+
+            $decision = Peserta::join('hasil', 'peserta.id', '=', 'hasil.id_peserta')
+                ->join('users', 'peserta.id_user', 'users.id')
+                ->where('peserta.tahun_daftar', '=', $tahun->tahun_daftar)
+                ->where('users.id', '=', Auth()->user()->id)
+                ->select('peserta.*', 'hasil.id_peserta', 'hasil.hasil')
+                ->orderByDesc('peserta.tahun_daftar')
+                ->orderByDesc('hasil')
+                ->first();
+        }
+
+        // dd($decision);
+
+        return view('pages.user.dashboard',  compact('peserta', 'decision'));
     }
 
     public function userSetting() // User Settings

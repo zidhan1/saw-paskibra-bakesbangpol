@@ -31,12 +31,6 @@ class PesertaController extends Controller
             "asal_sekolah"  => ['required', 'string', 'max:255'],
             "alamat_sekolah"  => ['required', 'string', 'max:255'],
             "email_sekolah"  => ['required', 'string', 'max:255'],
-            "nama_ayah"  => ['required', 'string', 'max:255'],
-            "pekerjaan_ayah"  => ['required', 'string', 'max:255'],
-            "no_hp_ayah"  => ['required', 'string', 'max:255'],
-            "nama_ibu"  => ['required', 'string', 'max:255'],
-            "pekerjaan_ibu"  => ['required', 'string', 'max:255'],
-            "no_hp_ibu"  => ['required', 'string', 'max:255'],
         ]);
 
         $my_year = Carbon::now()->year;
@@ -97,12 +91,6 @@ class PesertaController extends Controller
             "asal_sekolah"  => ['required', 'string', 'max:255'],
             "alamat_sekolah"  => ['required', 'string', 'max:255'],
             "email_sekolah"  => ['required', 'string', 'max:255'],
-            "nama_ayah"  => ['required', 'string', 'max:255'],
-            "pekerjaan_ayah"  => ['required', 'string', 'max:255'],
-            "no_hp_ayah"  => ['required', 'string', 'max:255'],
-            "nama_ibu"  => ['required', 'string', 'max:255'],
-            "pekerjaan_ibu"  => ['required', 'string', 'max:255'],
-            "no_hp_ibu"  => ['required', 'string', 'max:255'],
         ]);
 
         $my_year = Carbon::now()->year;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use stdClass;
 use Carbon\Carbon;
 use App\Models\Berkas;
 use App\Models\Peserta;
@@ -19,6 +20,11 @@ class PendaftaranController extends Controller
 
         $data = RegisDate::join('berkas', 'berkas.id', '=', 'regisdate.id_berkas')
             ->where('berkas.tahun', '=', $dateNow)->first();
+
+        if ($data === null) {
+            $data = new stdClass();
+            $data->enddate = '2000-01-01';
+        }
 
         $surat = Berkas::where('tahun', '=', $dateNow)
             ->where('jenis', '=', 'pernyataan')->first();
@@ -53,8 +59,8 @@ class PendaftaranController extends Controller
         ]);
 
         //Generate name surat pernyataan
-        $nameSuratPernyataan = 'Surat pernyataan_peserta_' . $id_peserta . '_' . $dateRegistration;
-
+        $nameSuratPernyataan = 'Surat pernyataan_peserta_' . $id_peserta->id . '_' . $dateRegistration;
+        // dd($nameSuratPernyataan);
         // store surat pernyataan
         $suratPath = $request->surat_pernyataan->move(public_path('file'), $nameSuratPernyataan);
 
