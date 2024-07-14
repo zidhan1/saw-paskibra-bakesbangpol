@@ -17,7 +17,7 @@
                     <tr>
                         <th>Peserta</th>
                         @foreach($kriteria as $kt)
-                        <th>{{ucwords($kt->nama_kriteria)}}</th>
+                        <th style="width: fit-content;">{{ucwords($kt->nama_kriteria)}}</th>
                         @endforeach
                     </tr>
                 </thead>
@@ -44,9 +44,9 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Peserta</th>
+                        <th style="width: 10%">Peserta</th>
                         @foreach($kriteria as $kt)
-                        <th>{{ucwords($kt->nama_kriteria)}}</th>
+                        <th style="width: fit-content;">{{ucwords($kt->nama_kriteria)}}</th>
                         @endforeach
                     </tr>
                 </thead>
@@ -103,6 +103,12 @@
             @foreach($data_asli as $key => $value3)
             <input type="hidden" value="{{$value3['nilai']}}" name="nilai[]" id="nilai[]">
             @endforeach
+            @foreach ($data_asli as $key => $value4)
+            <input type="hidden" value="{{$value4['tahun_daftar']}}" name="tahun[]" id="tahun[]">
+            @endforeach
+            <div class="col-md-3 mb-3">
+                <input type="number" max="{{count($data)}}" required class="form-control" name="jmlvalid" id="jmlvalid" placeholder="Jumlah Peserta Lolos">
+            </div>
             <a href="{{url('/peserta')}}" class="btn btn-sm btn-danger">Kembali</a>
             <button type="submit" class="btn btn-sky btn-sm">Simpan Data</button>
         </form>

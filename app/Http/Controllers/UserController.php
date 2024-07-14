@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use App\Models\Bahasa;
 use App\Models\Berkas;
 use App\Models\Peserta;
-
+use App\Models\RegisDate;
 use App\Models\Seleksi;
 use Illuminate\Http\Request;
 use function PHPUnit\Framework\isNull;
@@ -22,9 +22,10 @@ class UserController extends Controller
         $data = Berkas::where('tahun', '=', $dateNow)
             ->where('jenis', '=', 'admin')->get();
 
-        //dd($data);
+        $regisDate = RegisDate::whereDate('startdate', 'LIKE', '2024-%')->get();
+        // dd($regisDate);
         $auth = Auth()->user();
-        return view('pages.user.seleksi', compact('data', 'auth'));
+        return view('pages.user.seleksi', compact('data', 'auth', 'regisDate'));
     }
 
     // view detail jadwal seleksi

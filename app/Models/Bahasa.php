@@ -9,5 +9,5 @@ class Bahasa extends Model
 {
     use HasFactory;
     protected $table = 'bahasa';
-    protected $fillable = ['id_peserta', 'nama_bahasa'];
+    protected $fillable = ['id_peserta', 'nama_bahasa', 'tingkat_bahasa'];
 }

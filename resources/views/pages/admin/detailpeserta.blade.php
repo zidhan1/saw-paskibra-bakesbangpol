@@ -12,6 +12,10 @@
         <div class="card-body">
             <table class="table table-sm table-hover mb-3">
                 <tbody>
+                    <tr scope="col">
+                        <img src="{{ asset('file/profile/'. $data->profilepath) }}" alt="Gambar" style="width: 150px; display: block; margin: 0 auto;">
+                        <th></th>
+                    </tr>
                     <tr>
                         <th scope="col" style="width: 150px;">Nama Lengkap</th>
                         <th scope="col">:</th>

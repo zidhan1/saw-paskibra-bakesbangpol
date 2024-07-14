@@ -25,8 +25,26 @@
         <div class="card-body">
             <h5 class="mb-3">Masukkan data anda dengan benar</h5>
             <hr>
-            <form method="POST" action="@if($data === null){{route('peserta.store')}} @else {{route('peserta.update')}} @endif">
+            <form method="POST" action="@if($data === null){{route('peserta.store')}} @else {{route('peserta.update')}} @endif" enctype="multipart/form-data">
                 @csrf
+                @if($data !== null)
+                <div class="row">
+                    <div class="col">
+                        <img src="{{ asset('file/profile/'. $data->profilepath) }}" alt="Gambar" style="width: 150px;">
+                    </div>
+                </div>
+                @endif
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="pathprofile" class="form-label">Poto Profil<span class="text-danger">*</span></label>
+                            <input type="file" name="pathprofile" class="form-control" id="pathprofile">
+                        </div>
+                    </div>
+                </div>
+                <span class="fw-semibold fs-5 ">Data Diri</span>
+                <hr>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -90,29 +108,55 @@
                         </div>
                     </div>
                     @foreach($bahasa as $bhs)
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="mb-3">
-                            <label for="count[]" class="form-label">Bahasa<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="count{{$loop->iteration}}" name="bahasa[]" value="@if($data !== null){{$bhs->nama_bahasa}}@endif">
+                            <label for="count[]" class="form-label">Nama Bahasa<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="count1{{$loop->iteration}}" name="bahasa[]" value="@if($data !== null){{$bhs->nama_bahasa}}@endif">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="count[]" class="form-label">Tingkat Bahasa<span class="text-danger">*</span></label>
+                            <select name="tingkat_bahasa[]" id="count2{{$loop->iteration}}" class="form-control">
+                                @if($data !== null && $bhs->tingkat_bahasa == "Aktif")
+                                <option value="Aktif">Aktif</option>
+                                <option value="Pasif">Pasif</option>
+                                @elseif($data !== null && $bhs->tingkat_bahasa == "Pasif")
+                                <option value="Pasif">Pasif</option>
+                                <option value="Aktif">Aktif</option>
+                                @else
+                                <option value="Aktif">Aktif</option>
+                                <option value="Pasif">Pasif</option>
+                                @endif
+                            </select>
                         </div>
                     </div>
                     @endforeach
                     @if($bahasa->isEmpty())
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="mb-3">
                             <label for="bahasa" class="form-label">Bahasa<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="bahasa" name="bahasa[]" value="">
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="count[]" class="form-label">Tingkat Bahasa<span class="text-danger">*</span></label>
+                            <select name="tingkat_bahasa[]" class="form-control">
+                                <option value="Aktif">Aktif</option>
+                                <option value="Pasif">Pasif</option>
+                            </select>
+                        </div>
+                    </div>
                     @endif
-                    <div class="col-md-6" id="inputContainer">
-
-                    </div>
-                    <div class="col-md-6">
-                        <button class="btn btn-sm btn-sky mb-2" type="button" onclick="addInput()">Tambah bahasa</button>
-                        <button class="btn btn-sm btn-danger mb-2" type="button" onclick="deleteInput()">Hapus bahasa</button>
-                    </div>
+                    <div class="col-md-3" id="inputContainer"></div>
+                    <div class="col-md-3" id="inputContainer2"></div>
                 </div>
+                <div class="col-md-6">
+                    <button class="btn btn-sm btn-sky mb-2" type="button" onclick="addInput()">Tambah bahasa</button>
+                    <button class="btn btn-sm btn-danger mb-2" type="button" onclick="deleteInput()">Hapus bahasa</button>
+                </div>
+
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -225,25 +269,51 @@ $clickCount = $totalBahasa > 0 ? $totalBahasa : 1;
     function addInput() {
         // Membuat elemen input baru
         var newInput = document.createElement('input');
+        var newSelect = document.createElement('select');
         // Mengatur atribut atau properti input
         clickCount++;
         newInput.type = 'text';
         newInput.className = 'form-control mb-2';
-        newInput.id = 'count' + clickCount;
+        newInput.id = 'count1' + clickCount;
         newInput.name = 'bahasa[' + clickCount + ']';
         newInput.placeholder = 'Masukkan Bahasa Lainnya';
 
+        newSelect.className = 'form-control mb-2';
+        newSelect.id = 'count2' + clickCount;
+        newSelect.name = 'tingkat_bahasa[' + clickCount + ']';
+        // Definisi array pilihan yang ingin ditambahkan
+        var options = [{
+                value: 'Aktif',
+                text: 'Aktif'
+            },
+            {
+                value: 'Pasif',
+                text: 'Pasif'
+            },
+        ];
+
+        // Menambahkan pilihan ke elemen select
+        options.forEach(function(optionData) {
+            var option = document.createElement('option');
+            option.value = optionData.value;
+            option.textContent = optionData.text;
+            newSelect.appendChild(option);
+        });
+
         // Menambahkan elemen input ke dalam div dengan id inputContainer
         document.getElementById('inputContainer').appendChild(newInput);
+        document.getElementById('inputContainer2').appendChild(newSelect);
     }
 
     function deleteInput() {
         // Mendapatkan input terakhir yang ditambahkan
-        var input = document.getElementById('count' + clickCount);
+        var input = document.getElementById('count1' + clickCount);
+        var select = document.getElementById('count2' + clickCount);
         console.log(clickCount);
         if (input != null) {
             // Menghapus input terakhir
             input.remove();
+            select.remove();
             clickCount--;
         }
     }

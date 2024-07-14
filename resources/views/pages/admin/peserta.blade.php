@@ -55,9 +55,15 @@
                             <a href="{{asset('file/'. $dt->nama_berkas)}}" class="btn btn-sm btn-orange text-white">
                                 Berkas
                             </a>
+                            @if($dt->cekNilai !== null)
+                            <a href="{{url('nilai/add', $dt->id)}}" class="btn btn-primary btn-sm">
+                                Edit Nilai
+                            </a>
+                            @else
                             <a href="{{url('nilai/add', $dt->id)}}" class="btn btn-edit btn-sm">
                                 Beri Nilai
                             </a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
@@ -103,11 +109,23 @@
 
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable();
-    });
+        var table = $('#myTable').DataTable({
+            scrollX: true,
+            columnDefs: [{
+                    width: '100px',
+                    targets: 0
+                }, // Contoh: Kolom pertama lebarnya 100px
+                {
+                    width: '200px',
+                    targets: 1
+                }, // Kolom kedua lebarnya 200px
+                // dan seterusnya...
+            ]
+        });
 
-    // Menyesuaikan lebar kolom setelah tabel diinisialisasi
-    table.columns.adjust().draw();
+        // Menyesuaikan lebar kolom setelah tabel diinisialisasi
+        table.columns.adjust().draw();
+    });
 </script>
 
 @endsection

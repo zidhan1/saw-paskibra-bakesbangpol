@@ -45,7 +45,7 @@
                         <td style="width: 15%;">
                             <form action="{{route('validation', $dt->id)}}" method="post" id="form_{{ $dt->id }}">
                                 @csrf
-                                <a href="{{url('peserta', $dt->id)}}" class="btn btn-green btn-sm" type="button">
+                                <a href="{{url('nilai/add', $dt->id)}}" class="btn btn-green btn-sm" type="button">
                                     Lihat
                                 </a>
                                 <input type="hidden" name="result" id="result_{{ $dt->id }}" value="">
@@ -142,13 +142,23 @@
 
 <script>
     $(document).ready(function() {
-        // Inisialisasi DataTables dengan scrollX
         var table = $('#myTable').DataTable({
-            scrollX: true // Aktifkan scroll horizontal
+            scrollX: true,
+            columnDefs: [{
+                    width: '100px',
+                    targets: 0
+                }, // Contoh: Kolom pertama lebarnya 100px
+                {
+                    width: '200px',
+                    targets: 1
+                }, // Kolom kedua lebarnya 200px
+                // dan seterusnya...
+            ]
         });
+
+        // Menyesuaikan lebar kolom setelah tabel diinisialisasi
+        table.columns.adjust().draw();
     });
-    // Menyesuaikan lebar kolom setelah tabel diinisialisasi
-    table.columns.adjust().draw();
 </script>
 
 @endsection

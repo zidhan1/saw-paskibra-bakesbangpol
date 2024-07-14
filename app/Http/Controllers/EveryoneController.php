@@ -23,6 +23,32 @@ class EveryoneController extends Controller
 
     public function userIndex() // dashboard page user
     {
+        $tahunFirst = peserta::where('id_user', '=', Auth()->user()->id)->first();
+        if ($tahunFirst !== null) {
+            $hasil = Hasil::where('id_peserta', '=', $tahunFirst->id)->first();
+        } else {
+            $hasil = collect();
+        }
+
+        $peringkatUser = 0;
+        if ($hasil !== null) {
+            if ($tahunFirst !== null) {
+                $peringkat = Peserta::join('hasil', 'peserta.id', '=', 'hasil.id_peserta')
+                    ->where('peserta.tahun_daftar', '=', $tahunFirst->tahun_daftar)
+                    ->select('peserta.*', 'hasil.id_peserta', 'hasil.hasil')
+                    ->orderByDesc('hasil')
+                    ->orderByDesc('peserta.tahun_daftar')
+                    ->get();
+
+                // Cari peringkat peserta dengan id_user 3
+                $peringkatUser = $peringkat->search(function ($item, $key) {
+                    return $item->id_user == Auth()->user()->id;
+                });
+
+                $peringkatUser += 1; // Tambah 1 karena peringkat dimulai dari 1, bukan 0
+            }
+        }
+
         $tahun = peserta::where('id_user', '=', Auth()->user()->id)->first();
         if ($tahun === null) {
             $tahun = (object)['tahun_daftar' => '2000'];
@@ -55,7 +81,7 @@ class EveryoneController extends Controller
 
         // dd($decision);
 
-        return view('pages.user.dashboard',  compact('peserta', 'decision'));
+        return view('pages.user.dashboard',  compact('peserta', 'decision', 'peringkatUser'));
     }
 
     public function userSetting() // User Settings

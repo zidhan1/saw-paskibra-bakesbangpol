@@ -10,6 +10,7 @@ use App\Models\Peserta;
 use App\Models\Seleksi;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Storage;
 
 
 class PesertaController extends Controller
@@ -17,7 +18,9 @@ class PesertaController extends Controller
     // menambahkan data peserta / pendaftaran (user middleware)
     public function store(Request $request)
     {
+        //dd($request->file('pathprofile')->getClientOriginalName());
         $validator = $request->validate([
+            "pathprofile" => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             "nama_lengkap" => ['required', 'string', 'max:255'],
             "nama_panggilan" => ['required', 'string', 'max:255'],
             "jenis_kelamin" => ['required', 'string', 'max:255'],
@@ -35,7 +38,12 @@ class PesertaController extends Controller
 
         $my_year = Carbon::now()->year;
         $auth = Auth()->user();
+
+        // nama path profile
+        $pathprofilename = 'profile' . '_' . $auth->id . '_' . $request->file('pathprofile')->getClientOriginalName();
+
         $data = Peserta::createOrFirst([
+            "profilepath" => $pathprofilename,
             "id_user" => $auth->id,
             "nama_lengkap" => $request->nama_lengkap,
             "nama_panggilan" => $request->nama_panggilan,
@@ -60,14 +68,19 @@ class PesertaController extends Controller
             "options" => 1
         ]);
 
-        $bahasaArray = $request->bahasa;
-        $peserta = Peserta::where('id_user', '=',  $auth->id)->first();
+        // pindah profile 
+        $request->pathprofile->move(public_path('file/profile'), $pathprofilename);
 
+        $bahasaArray = $request->bahasa;
+        $tingkatBahasaArray = $request->tingkat_bahasa;
+        $peserta = Peserta::where('id_user', '=',  $auth->id)->first();
+        // dd($tingkatBahasaArray);
         // Lakukan loop untuk mengolah data
-        foreach ($bahasaArray as $bahasa) {
+        foreach ($bahasaArray as $key => $bahasa) {
             $data = Bahasa::createOrFirst([
                 'id_peserta' => $peserta->id,
-                'nama_bahasa' => $bahasa
+                'nama_bahasa' => $bahasa,
+                'tingkat_bahasa' => $tingkatBahasaArray[$key]
             ]);
         }
 
@@ -78,6 +91,7 @@ class PesertaController extends Controller
     {
         // dd("ke update");
         $validator = $request->validate([
+            "pathprofile" => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             "nama_lengkap" => ['required', 'string', 'max:255'],
             "nama_panggilan" => ['required', 'string', 'max:255'],
             "jenis_kelamin" => ['required', 'string', 'max:255'],
@@ -95,9 +109,28 @@ class PesertaController extends Controller
 
         $my_year = Carbon::now()->year;
         $auth = Auth()->user();
+
+        $pathlama = Peserta::where('id_user', '=', $auth->id)->first();
+
+        // nama path profile
+        if ($request->hasFile('profilepath')) {
+            $pathprofilename = 'profile' . '_' . $auth->id . '_' . $request->file('pathprofile')->getClientOriginalName();
+        } else {
+            $pathprofilename = $pathlama->profilepath;
+        }
+
+        // Hapus gambar profil lama
+        // dd(Storage);
+        if ($request->hasFile('pathprofile')) {
+            if (Storage::exists('profile/' . $pathlama->profilepath)) {
+                Storage::delete('profile/' . $pathlama->profilepath);
+            }
+        }
+
         $data = Peserta::updateOrCreate(
             ["id_user" => $auth->id],
             [
+                "profilepath" => $pathprofilename,
                 "id_user" => $auth->id,
                 "nama_lengkap" => $request->nama_lengkap,
                 "nama_panggilan" => $request->nama_panggilan,
@@ -123,7 +156,13 @@ class PesertaController extends Controller
             ]
         );
 
+        // pindah profile 
+        if ($request->hasFile('pathprofile')) {
+            $request->pathprofile->move(public_path('file/profile'), $pathprofilename);
+        }
+
         $bahasaArray = $request->bahasa;
+        $tingkatBahasaArray = $request->tingkat_bahasa;
         $peserta = Peserta::where('id_user', '=',  $auth->id)->first();
 
         // Hapus semua bahasa
@@ -133,10 +172,11 @@ class PesertaController extends Controller
         }
 
         // Lakukan loop untuk mengolah data
-        foreach ($bahasaArray as $bahasa) {
+        foreach ($bahasaArray as $key => $bahasa) {
             $data = Bahasa::updateOrCreate([
                 'id_peserta' => $peserta->id,
-                'nama_bahasa' => $bahasa
+                'nama_bahasa' => $bahasa,
+                'tingkat_bahasa' => $tingkatBahasaArray[$key]
             ]);
         }
 
@@ -155,9 +195,14 @@ class PesertaController extends Controller
     public function indexAdmin()
     {
         $data = Peserta::join('berkas', 'peserta.id', '=', 'berkas.id_peserta')
-            ->select('peserta.*', 'berkas.id_peserta', 'berkas.nama_berkas', 'berkas.jenis', 'berkas.tahun')
-            ->where('options', '=', '1')->get();
+            ->leftJoin('nilai', 'peserta.id', '=', 'nilai.id_peserta')
+            ->select('peserta.*', 'berkas.id_peserta', 'berkas.nama_berkas', 'berkas.jenis', 'berkas.tahun', 'nilai.id_peserta AS cekNilai')
+            ->where('options', '=', '1')
+            ->distinct('peserta.id')
+            ->orderByDesc('peserta.created_at')
+            ->get();
         // dd($data);
+
         return view('pages.admin.peserta', compact('data'));
     }
 

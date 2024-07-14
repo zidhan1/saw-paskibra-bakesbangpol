@@ -30,7 +30,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [AuthController::class, 'index'])->middleware('guest');
+// Route::get('/', [AuthController::class, 'index'])->middleware('guest');
+Route::get('/', function () {
+    return view('pages.landing');
+});
 
 // Akses Admin
 Route::middleware(['admin'])->group(function () {
