@@ -13,10 +13,15 @@ class SeleksiController extends Controller
 {
     public function index()
     {
+        $dateNow = Carbon::today();
+        $dateNow = $dateNow->year;
+
         $data = Berkas::where('jenis', '=', 'admin')
             ->orWhere('jenis', '=', 'pernyataan')
             ->get();
-        return view('pages.admin.seleksi', compact('data'));
+
+        $regisDate = RegisDate::whereDate('startdate', 'LIKE', $dateNow . '-%')->get();
+        return view('pages.admin.seleksi', compact('data', 'regisDate'));
     }
 
     public function store(Request $request)

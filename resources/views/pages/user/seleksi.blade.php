@@ -19,14 +19,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($regisDate !== null)
                     @foreach($regisDate as $key => $datas)
                     <tr>
                         <td style="width: 10%;">{{$loop->iteration}}</td>
                         <td style="width: 40%;">{{$datas->startdate}}</td>
                         <td style="width: 40%;">{{$datas->enddate}}</td>
-
                     </tr>
                     @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

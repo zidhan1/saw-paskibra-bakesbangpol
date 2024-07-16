@@ -136,19 +136,6 @@ class HasilController extends Controller
             ->orderBy('hasil.hasil', 'desc')
             ->get();
 
-        $dataSave = Hasil::select('nilai.nilai AS nilai_parade', 'hasil.hasil', 'peserta.*')
-            ->join('peserta', 'hasil.id_peserta', '=', 'peserta.id')
-            ->join('nilai', 'peserta.id', '=', 'nilai.id_peserta')
-            ->join('kriteria', 'nilai.id_kriteria', '=', 'kriteria.id')
-            ->where('peserta.tahun_daftar', '=', $request->input('tahun')[0])
-            ->where('kriteria.nama_kriteria', '=', 'parade')
-            ->orderBy('hasil.hasil', 'desc')
-            ->orderByDesc('nilai_parade')
-            ->take($valid)
-            ->get();
-
-        // dd($dataSave);
-
         // Delete hasil lama
         if ($dataTampung !== null) {
             foreach ($dataTampung as $updateData) {
@@ -170,6 +157,17 @@ class HasilController extends Controller
         // Reset data validation
         $tahun = $request->input('tahun')[0];
         DB::statement("UPDATE peserta SET validation = 'not validated' WHERE tahun_daftar = ?", [$tahun]);
+
+        $dataSave = Hasil::select('nilai.nilai AS nilai_parade', 'hasil.hasil', 'peserta.*')
+            ->join('peserta', 'hasil.id_peserta', '=', 'peserta.id')
+            ->join('nilai', 'peserta.id', '=', 'nilai.id_peserta')
+            ->join('kriteria', 'nilai.id_kriteria', '=', 'kriteria.id')
+            ->where('peserta.tahun_daftar', '=', $request->input('tahun')[0])
+            ->where('kriteria.nama_kriteria', '=', 'parade')
+            ->orderBy('hasil.hasil', 'desc')
+            ->orderByDesc('nilai_parade')
+            ->take($valid)
+            ->get();
 
         // dd($dataSave);
         foreach ($dataSave as $updateData) {

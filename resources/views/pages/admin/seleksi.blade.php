@@ -28,6 +28,35 @@
     </div>
     @endif
 
+    <div class="card mb-3">
+        <div class="card-header">
+            Jadwal Seleksi
+        </div>
+        <div class="card-body">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Tanggal Mulai</th>
+                        <th scope="col">Tanggal Selesai</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if($regisDate !== null)
+                    @foreach($regisDate as $key => $datas)
+                    <tr>
+                        <td style="width: 10%;">{{$loop->iteration}}</td>
+                        <td style="width: 40%;">{{$datas->startdate}}</td>
+                        <td style="width: 40%;">{{$datas->enddate}}</td>
+
+                    </tr>
+                    @endforeach
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-header">
             <button class="btn btn-sky btn-sm" data-bs-toggle="modal" data-bs-target="#addseleksi" type="button">

@@ -22,7 +22,7 @@ class UserController extends Controller
         $data = Berkas::where('tahun', '=', $dateNow)
             ->where('jenis', '=', 'admin')->get();
 
-        $regisDate = RegisDate::whereDate('startdate', 'LIKE', '2024-%')->get();
+        $regisDate = RegisDate::whereDate('startdate', 'LIKE', $dateNow . '-%')->get();
         // dd($regisDate);
         $auth = Auth()->user();
         return view('pages.user.seleksi', compact('data', 'auth', 'regisDate'));

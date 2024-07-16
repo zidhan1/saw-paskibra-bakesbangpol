@@ -144,16 +144,17 @@
     $(document).ready(function() {
         var table = $('#myTable').DataTable({
             scrollX: true,
-            columnDefs: [{
-                    width: '100px',
-                    targets: 0
-                }, // Contoh: Kolom pertama lebarnya 100px
-                {
-                    width: '200px',
-                    targets: 1
-                }, // Kolom kedua lebarnya 200px
-                // dan seterusnya...
-            ]
+            autoWidth: true,
+            // columnDefs: [{
+            //         width: '100px',
+            //         targets: 0
+            //     }, // Contoh: Kolom pertama lebarnya 100px
+            //     {
+            //         width: '200px',
+            //         targets: 1
+            //     }, // Kolom kedua lebarnya 200px
+            //     // dan seterusnya...
+            // ]
         });
 
         // Menyesuaikan lebar kolom setelah tabel diinisialisasi
