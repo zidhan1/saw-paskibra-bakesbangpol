@@ -57,7 +57,7 @@
                             </a>
                             @if($dt->cekNilai !== null)
                             <a href="{{url('nilai/add', $dt->id)}}" class="btn btn-primary btn-sm">
-                                Edit Nilai
+                                Selesai
                             </a>
                             @else
                             <a href="{{url('nilai/add', $dt->id)}}" class="btn btn-edit btn-sm">

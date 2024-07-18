@@ -101,7 +101,11 @@
                     </div>
                 </div>
                 <a href="{{url('peserta')}}" class="btn btn-sm btn-danger">Kembali</a>
+                @if($value->isEmpty())
                 <button class="btn btn-sm btn-edit" type="submit">Simpan</button>
+                @else
+                <div></div>
+                @endif
             </form>
         </div>
     </div>

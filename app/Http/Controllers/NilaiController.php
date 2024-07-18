@@ -18,7 +18,7 @@ class NilaiController extends Controller
         $value = Nilai::where('id_peserta', '=', $id)->get();
         if ($value->isEmpty())
             $value = collect();
-
+        // dd($value);
         return view('pages.admin.nilai', compact('data', 'kriteria', 'value'));
     }
 
